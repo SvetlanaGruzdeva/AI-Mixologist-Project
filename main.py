@@ -7,7 +7,6 @@
 # * [Step 3: measures](#3)
 # * [Step 4: garnish](#4)
 # * [Step 5: generate cocktail](#5)
-# * [Step 6: select alcoholic ingredients from presented variaty based on it's type](#6)
 
 # In[1]:
 
@@ -18,10 +17,6 @@ import numpy as np
 import nltk
 import collections
 import random
-import ipywidgets as widgets
-from IPython.display import clear_output, display
-from tkinter import *
-from tkinter import messagebox as mb
 
 
 # In[2]:
@@ -158,7 +153,7 @@ df_ingredients.head()
 
 bigram = [list(nltk.bigrams(nltk.word_tokenize(i))) for i in df_ingredients['Ingredients']]
 pairs_list = [j for i in bigram for j in i]
-print(len(pairs_list))
+# print(len(pairs_list))
 pairs_list[:10]
 
 
@@ -206,7 +201,7 @@ len(pairs_list_aligned) == len(pairs_list)
 # Define 25% of the most common pairs as a separate list
 
 counter=collections.Counter(pairs_list_aligned)
-print(len(counter))
+# print(len(counter))
 common_pairs = counter.most_common(int(len(counter)*0.25))
 common_pairs
 
@@ -385,3 +380,39 @@ def liqueurs(new_cocktail_final):
             new_cocktail_final['Ingredient'] = new_cocktail_final['Ingredient'].apply(lambda x: x.replace(i, random.choice(lst)))
             
     return new_cocktail_final
+
+
+# **Generate full cocktail**
+
+# In[31]:
+
+
+# Default variable for usage without GUI
+
+choice = 0
+
+
+# In[32]:
+
+
+def create_cocktail():
+    # Define total number of ingredients for a new cocktail
+    n_ingr = random.randint(3,6)
+
+    if choice == 0:       # user trusts the machine
+        # Pick the first ingredient randomly from the top popular
+        new_cocktail = [first_ingredient()]
+    
+    elif choice == 1:
+        new_cocktail = [user_choice_var]      # take user's input
+
+    # Identify remaning ingredients
+    counter = 1          # Not zero because the first ingredient is defined separatelly above
+    while counter < n_ingr:
+        new_cocktail.append(next_ingredient(new_cocktail))
+        counter += 1
+
+    new_cocktail_final = liqueurs(garnish(volume(new_cocktail)))
+
+    return display(new_cocktail_final)
+
