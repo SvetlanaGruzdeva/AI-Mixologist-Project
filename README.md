@@ -26,5 +26,5 @@ Python 3.8.3
 To run the generative algorithm open file 'GUI' and run it using graphical interface available in this file.
 
 ### Sources
-Dataset: https://www.kaggle.com/ai-first/cocktail-ingredients
+Dataset: https://www.kaggle.com/ai-first/cocktail-ingredients<br/>
 Example of GAN: https://towardsdatascience.com/recurrent-neural-networks-by-example-in-python-ffd204f99470
