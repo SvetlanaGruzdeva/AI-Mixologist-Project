@@ -23,7 +23,7 @@ Python 3.8.3
 - random
 
 ### Run the program
-To run the generative algorithm open file 'GUI' and run it using graphical interface available in this file.
+To run the generative algorithm open file 'GUI' and run it using graphical interface available in this file. The code of the algorithm itself is stored in file 'main'.
 
 ### Sources
 Dataset: https://www.kaggle.com/ai-first/cocktail-ingredients<br/>
